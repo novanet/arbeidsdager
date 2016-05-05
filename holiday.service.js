@@ -7,26 +7,37 @@
 
 	holidayService.$inject = [];
 
-    // XX.XX: Palmesøndag
-    // XX.XX: Skjærtorsdag
-    // XX.XX: Langfredag
-    // XX.XX: 1. påskedag
-    // XX.XX: 2. påskedag
-    // 01.05: Offentlig høytidsdag
-    // 05.05: Kristi Himmelfartsdag
-    // XX.XX: 1. pinsedag
-    // XX.XX: 2. pinsedag
-    // 17.05: Grunnlovsdag
-    // 25.12: 1. juledag
-    // 26.12: 2. juledag
-    // 01.01: 1. nyttårsdag
-
 	function holidayService() {                                		
         return {
-		    getHolidays : _.memoize(getHolidays)
-		};
-		
-		function getHolidays(year) {
+		    getHolidays : _.memoize(getHolidays),
+                    getSpecialDays : _.memoize(getSpecialDays),
+                    getStartOfSummerTime : _.memoize(getStartOfSummerTime),
+                    getEndOfSummerTime : _.memoize(getEndOfSummerTime)
+        };
+        
+        function getStartOfSummerTime(year){                                              
+                // Sommertid start: kl. 0200 siste søndag i mars
+                return getDateForLastOccurenceOfDayInMonth(year, 2, 0).format('YYYY-MM-DD');
+        }
+        
+        function getEndOfSummerTime(year){                                              
+                // Sommertid slutt: kl. 0300 siste søndag i oktober.
+                return getDateForLastOccurenceOfDayInMonth(year, 9, 0).format('YYYY-MM-DD');
+        }
+        
+        function getSpecialDays(year){
+                var specialDays = [];
+                
+                // Morsdag: Den andre søndagen i februar
+                specialDays.push({'date' : getMothersDay(year).format('YYYY-MM-DD'), 'name' : 'Morsdag'});
+                
+                // Farsdag: Den andre søndagen i november
+                specialDays.push({'date' : getFathersDay(year).format('YYYY-MM-DD'), 'name' : 'Farsdag'});        
+                
+                return specialDays;                
+        }	
+                        
+        function getHolidays(year) {
             var easterSunday = getEasterSunday(year);           
             
             var holidays = [];
@@ -92,4 +103,30 @@
                 return moment(new Date(year, n-1, p));                                
             }        
 	}
+        
+        function getMothersDay(year){
+                //den andre søndagen i februar
+                return getDateForSecondOccurenceOfDayInMonth(year, 1, 0);                
+        }
+        
+        function getFathersDay(year){
+                // andre søndagen i november
+                return getDateForSecondOccurenceOfDayInMonth(year, 10, 0);
+        }
+        
+        function getDateForSecondOccurenceOfDayInMonth(year, month, day){
+                var result = moment(new Date(year, month, 1)).add(7, 'days');               
+                while (result.day() !== day) {
+                        result.add(1, 'day');
+                }
+                return result;
+        }
+        
+        function getDateForLastOccurenceOfDayInMonth(year, month, day){
+                var result = moment(new Date(year, month, 1)).endOf('month');
+                while (result.day() !== day) {
+                        result.subtract(1, 'day');
+                }
+                return result;
+        }
 })();

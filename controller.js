@@ -16,12 +16,15 @@
             vm.increaseYear = increaseYear;
             vm.months = [];            
             vm.selectedYear = undefined;
-            vm.selectYear = selectYear;
+            vm.specialDays = [];
+            vm.summerTime = undefined;            
             vm.today = moment().format();
+            vm.week = moment().isoWeek();
             
             function init() {
                 vm.selectedYear = moment().year();                            
                 setNumberOfWorkingDays();
+                setSpecialDays();
             }
             
             function setNumberOfWorkingDays(){
@@ -40,6 +43,14 @@
                 vm.months.push({'name' : 'Oktober', 'numberOfWorkingDays': getNumberOfWorkingDays(10)});
                 vm.months.push({'name' : 'November', 'numberOfWorkingDays': getNumberOfWorkingDays(11)});
                 vm.months.push({'name' : 'Desember', 'numberOfWorkingDays': getNumberOfWorkingDays(12)});                                                                                             
+            }
+            
+            function setSpecialDays(){
+                vm.specialDays = holidayService.getSpecialDays(vm.selectedYear);
+                vm.summerTime = {
+                    start : holidayService.getStartOfSummerTime(vm.selectedYear),
+                    end : holidayService.getEndOfSummerTime(vm.selectedYear)
+                }                   
             }
             
             function getNumberOfWorkingDays(month){
@@ -68,18 +79,15 @@
             
             function decreaseYear(){
                 vm.selectedYear--;
-                setNumberOfWorkingDays()
+                setNumberOfWorkingDays();
+                setSpecialDays();
             }
             
             function increaseYear(){
                 vm.selectedYear++;
-                setNumberOfWorkingDays()
-            }
-            
-            function selectYear(year){
-                vm.selectedYear = year; 
-                setNumberOfWorkingDays()
-            }
+                setNumberOfWorkingDays();
+                setSpecialDays();
+            }            
             
             init();      
         }
