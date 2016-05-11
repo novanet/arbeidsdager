@@ -11,21 +11,23 @@
         }        
         .nav-tabs>li,.nav-pills>li {margin:12px;float:none;display:inline-block;*display:inline; /* ie7 fix */zoom:1; /* hasLayout ie7 trigger */}
         .nav-tabs,.nav-pills{text-align:center;}
+        .pager li>a {min-width:40px;outline:none;}
         .badge{padding:40px;font-size:48px;}
-        .logo{width:200px;float:left;padding:10px;}
+        .logo{margin-left:28px;}
+        @media screen and (min-width: 480px) {.logo{position:relative;float:left;left:200px;margin-left:-200px;}}
     </style>
 </head>
 <body>
-    <a href="http://www.novanet.no"><img src="novanet-logo.svg" class="logo"></a>
     <div class="container">      
         <div class="row">            
             <div class="jumbotron" style="margin-top:5px;text-align:center;">
+                <a href="http://www.novanet.no"><img src="novanet-logo.svg" class="logo"></a>
                 <h1>Arbeidsdager</h1>
                 <p>
                     <ul class="pager" ng-cloak>
-                        <li><a href="#" ng-click="vm.decreaseYear()">-</a></li>
+                        <li><a class="btn" ng-click="vm.decreaseYear()">-</a></li>
                         <li style="font-size:24px;vertical-align: middle;padding-left:10px;padding-right:10px;">{{vm.selectedYear}}</li>
-                        <li><a href="#" ng-click="vm.increaseYear()">+</a></li>
+                        <li><a class="btn" ng-click="vm.increaseYear()">+</a></li>
                     </ul>                    
                     <ul class="nav nav-pills" ng-cloak>
                         <li role="presentation" ng-repeat="month in vm.months">
@@ -35,7 +37,7 @@
                     </ul>    
                     <br />                          
                     <br />
-                    <div class="row" style=" margin:auto;width:90%;">
+                    <div class="row" style="margin:auto;width:90%;">
                         <div class="col-lg-4">
                             <ul style="text-align:left;list-style-type:none;" ng-cloak><strong>I dag:</strong>
                                 <li>{{vm.today | date:'dd.MM.yyyy'}}</li>                                
