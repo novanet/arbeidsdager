@@ -19,6 +19,7 @@
             vm.specialDays = [];
             vm.summerTime = undefined;            
             vm.today = moment().format();
+			vm.totalNumberOfWorkingDaysInYear = undefined;
             vm.week = moment().isoWeek();
             
             function init() {
@@ -29,7 +30,7 @@
             
             function setNumberOfWorkingDays(){
                 vm.holidays = holidayService.getHolidays(vm.selectedYear);
-                                
+
                 vm.months = [];
                 vm.months.push({'name' : 'Januar', 'numberOfWorkingDays': getNumberOfWorkingDays(1)});
                 vm.months.push({'name' : 'Februar', 'numberOfWorkingDays': getNumberOfWorkingDays(2)});
@@ -42,7 +43,13 @@
                 vm.months.push({'name' : 'September', 'numberOfWorkingDays': getNumberOfWorkingDays(9)});
                 vm.months.push({'name' : 'Oktober', 'numberOfWorkingDays': getNumberOfWorkingDays(10)});
                 vm.months.push({'name' : 'November', 'numberOfWorkingDays': getNumberOfWorkingDays(11)});
-                vm.months.push({'name' : 'Desember', 'numberOfWorkingDays': getNumberOfWorkingDays(12)});                                                                                             
+                vm.months.push({'name' : 'Desember', 'numberOfWorkingDays': getNumberOfWorkingDays(12)});      
+
+				var totalDays = 0;
+				for(var i = 0; i< vm.months.length; i++){
+					totalDays += vm.months[i].numberOfWorkingDays;
+				}
+				vm.totalNumberOfWorkingDaysInYear = totalDays;			
             }
             
             function setSpecialDays(){

@@ -45,6 +45,9 @@
                             <ul style="text-align:left;list-style-type:none;" ng-cloak><strong>Ukenummer:</strong>
                                 <li>{{vm.week}}</li>                                
                             </ul> 
+							<ul style="text-align:left;list-style-type:none;" ng-if="vm.totalNumberOfWorkingDaysInYear" ng-cloak><strong>Totalt antall arbeidsdager</strong>
+                                <li>{{vm.totalNumberOfWorkingDaysInYear}}</li>
+                            </ul>							
                         </div>
                         <div class="col-lg-4">
                             <ul style="text-align:left;list-style-type:none;" ng-cloak><strong>Helligdager i {{vm.selectedYear}}:</strong>
