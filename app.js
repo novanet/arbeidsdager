@@ -2,13 +2,36 @@ new Vue({
 
     el: '#app',
 
-    data: {
-        months: [],
-        selectedYear: 0
+    data: function () {
+        return {
+            selectedYear: 0
+        }
     },
 
     created: function () {
         this.selectedYear = moment().year()
+    },
+
+    computed: {
+        holidays() {
+            return utils.holiday.getHolidays(this.selectedYear)
+        },
+        months() {
+            return [
+                { 'name': 'Januar', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 1, this.holidays) },
+                { 'name': 'Februar', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 2, this.holidays) },
+                { 'name': 'Mars', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 3, this.holidays) },
+                { 'name': 'April', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 4, this.holidays) },
+                { 'name': 'Mai', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 5, this.holidays) },
+                { 'name': 'Juni', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 6, this.holidays) },
+                { 'name': 'Juli', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 7, this.holidays) },
+                { 'name': 'August', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 8, this.holidays) },
+                { 'name': 'September', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 9, this.holidays) },
+                { 'name': 'Oktober', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 10, this.holidays) },
+                { 'name': 'November', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 11, this.holidays) },
+                { 'name': 'Desember', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 12, this.holidays) }
+            ]
+        }
     },
 
     methods: {
@@ -18,5 +41,5 @@ new Vue({
         increaseYear: function () {
             this.selectedYear++;
         }
-    }
+    },
 })
