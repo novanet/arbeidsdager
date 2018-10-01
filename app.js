@@ -21,7 +21,7 @@ new Vue({
 
     watch: {
         selectedYear: function (year) {
-            this.holidays = utils.holiday.getHolidays(this.selectedYear);
+            this.holidays = _.orderBy(utils.holiday.getHolidays(this.selectedYear), ['date'], ['asc']);
             this.months = [
                 { 'name': 'Januar', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 1, this.holidays) },
                 { 'name': 'Februar', 'numberOfWorkingDays': utils.wdays.getNumberOfWorkingDays(this.selectedYear, 2, this.holidays) },

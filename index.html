@@ -38,25 +38,24 @@
                     <br />
                     <div class="row" style="margin:auto;width:90%;">
                         <div class="col-lg-4">
-                            <ul style="text-align:left;list-style-type:none;" ng-cloak><strong>I dag:</strong>
+                            <ul style="text-align:left;list-style-type:none;"><strong>I dag:</strong>
                                 <li>{{today | date('DD.MM.YYYY')}}</li>
                             </ul>
-                            <ul style="text-align:left;list-style-type:none;" ng-cloak><strong>Ukenummer:</strong>
+                            <ul style="text-align:left;list-style-type:none;"><strong>Ukenummer:</strong>
                                 <li>{{week}}</li>
                             </ul>
-                            <ul style="text-align:left;list-style-type:none;" ng-if="totalNumberOfWorkingDaysInYear"
-                                ng-cloak><strong>Totalt antall arbeidsdager</strong>
+                            <ul style="text-align:left;list-style-type:none;"><strong>Totalt antall arbeidsdager</strong>
                                 <li>{{totalNumberOfWorkingDaysInYear}}</li>
                             </ul>
                         </div>
-                        <!-- <div class="col-lg-4">
-                            <ul style="text-align:left;list-style-type:none;" ng-cloak><strong>Helligdager i
+                        <div class="col-lg-4">
+                            <ul style="text-align:left;list-style-type:none;"><strong>Helligdager i
                                     {{selectedYear}}:</strong>
-                                <li ng-repeat="h in vm.holidays | orderBy:'date'">{{h.date | date:'dd.MM'}} -
-                                    {{h.name}}</li>
+                                <li v-for="holiday in holidays">{{holiday.date | date('DD.MM')}} -
+                                    {{holiday.name}}</li>
                             </ul>
                         </div>
-                        <div class="col-lg-4">
+                        <!-- <div class="col-lg-4">
                             <ul style="text-align:left;list-style-type:none;" ng-if="vm.summerTime" ng-cloak><strong>Sommertid
                                     starter</strong>
                                 <li>{{vm.summerTime.start | date:'dd.MM'}} - kl.02:00</li>
