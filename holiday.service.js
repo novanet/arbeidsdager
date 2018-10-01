@@ -6,7 +6,7 @@ utils.holiday = utils.holiday || {};
         ctx.getHolidays = _.memoize(getHolidays);
         ctx.getSpecialDays = _.memoize(getSpecialDays);
         ctx.getStartOfSummerTime = _.memoize(getStartOfSummerTime);
-        BaseAudioContext.getEndOfSummerTime = _.memoize(getEndOfSummerTime);
+        ctx.getEndOfSummerTime = _.memoize(getEndOfSummerTime);
 
         function getStartOfSummerTime(year) {
                 // Sommertid start: kl. 0200 siste søndag i mars

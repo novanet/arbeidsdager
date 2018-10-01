@@ -9,7 +9,12 @@ new Vue({
             week: '',
             months: [],
             holidays: [],
-            totalNumberOfWorkingDaysInYear: 0
+            totalNumberOfWorkingDaysInYear: 0,
+            summerTime: {
+                start: '',
+                end: ''
+            },
+            specialDays: []
         }
     },
 
@@ -41,6 +46,9 @@ new Vue({
                 totalDays += this.months[i].numberOfWorkingDays;
             }
             this.totalNumberOfWorkingDaysInYear = totalDays;
+            this.summerTime.start = utils.holiday.getStartOfSummerTime(this.selectedYear);
+            this.summerTime.end = utils.holiday.getEndOfSummerTime(this.selectedYear);
+            this.specialDays = _.orderBy(utils.holiday.getSpecialDays(this.selectedYear), ['date'], ['asc']);
         }
     },
 
