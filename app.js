@@ -28,19 +28,20 @@ new Vue({
         selectedYear: function (year) {
             this.holidays = _.orderBy(utils.getHolidays(this.selectedYear), ['date'], ['asc']);
             this.months = [
-                { 'name': 'Januar', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 1, this.holidays) },
-                { 'name': 'Februar', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 2, this.holidays) },
-                { 'name': 'Mars', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 3, this.holidays) },
-                { 'name': 'April', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 4, this.holidays) },
-                { 'name': 'Mai', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 5, this.holidays) },
-                { 'name': 'Juni', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 6, this.holidays) },
-                { 'name': 'Juli', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 7, this.holidays) },
-                { 'name': 'August', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 8, this.holidays) },
-                { 'name': 'September', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 9, this.holidays) },
-                { 'name': 'Oktober', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 10, this.holidays) },
-                { 'name': 'November', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 11, this.holidays) },
-                { 'name': 'Desember', 'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, 12, this.holidays) }
+                this.createMonth('Januar', 1),
+                this.createMonth('Februar', 2),
+                this.createMonth('Mars', 3),
+                this.createMonth('April', 4),
+                this.createMonth('Mai', 5),
+                this.createMonth('Juni', 6),
+                this.createMonth('Juli', 7),
+                this.createMonth('August', 8),
+                this.createMonth('September', 9),
+                this.createMonth('Oktober', 10),
+                this.createMonth('November', 11),
+                this.createMonth('Desember', 12)
             ];
+
             var totalDays = 0;
             for (var i = 0; i < this.months.length; i++) {
                 totalDays += this.months[i].numberOfWorkingDays;
@@ -58,6 +59,12 @@ new Vue({
         },
         increaseYear: function () {
             this.selectedYear++;
+        },
+        createMonth: function (name, monthNumber) {
+            return {
+                'name': name,
+                'numberOfWorkingDays': utils.getNumberOfWorkingDays(this.selectedYear, monthNumber, this.holidays)
+            }
         }
     },
 
