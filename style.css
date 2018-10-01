@@ -1,0 +1,12 @@
+.nav-tabs>li,.nav-pills>li {margin:12px;float:none;display:inline-block;*display:inline; /* ie7 fix */zoom:1; /* hasLayout ie7 trigger */}
+.nav-tabs>li:first-child, .nav-pills>li:first-child {margin-left:0;}
+.nav-tabs,.nav-pills{text-align:center;}
+.pager li>a {min-width:40px;outline:none;}
+.badge{padding:42px;font-size:48px;}
+.logo{margin-left:28px;width:88px;}
+@media screen and (min-width: 480px) {.logo{position:relative;float:left;left:200px;margin-left:-200px;}}
+[v-cloak] {display: none}
+.jumbotron{margin-top:5px;text-align:center;}
+.selector{font-size:24px;vertical-align: middle;padding-left:10px;padding-right:10px;}
+.row.summary{margin:auto;width:90%;}
+.summary>div>ul{text-align:left;list-style-type:none;}
