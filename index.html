@@ -36,11 +36,10 @@
                     </ul>
                     <br />
                     <br />
-                    <!-- 
                     <div class="row" style="margin:auto;width:90%;">
                         <div class="col-lg-4">
                             <ul style="text-align:left;list-style-type:none;" ng-cloak><strong>I dag:</strong>
-                                <li>{{today | date:'dd.MM.yyyy'}}</li>
+                                <li>{{today | date('DD.MM.YYYY')}}</li>
                             </ul>
                             <ul style="text-align:left;list-style-type:none;" ng-cloak><strong>Ukenummer:</strong>
                                 <li>{{week}}</li>
@@ -50,7 +49,7 @@
                                 <li>{{totalNumberOfWorkingDaysInYear}}</li>
                             </ul>
                         </div>
-                        <div class="col-lg-4">
+                        <!-- <div class="col-lg-4">
                             <ul style="text-align:left;list-style-type:none;" ng-cloak><strong>Helligdager i
                                     {{selectedYear}}:</strong>
                                 <li ng-repeat="h in vm.holidays | orderBy:'date'">{{h.date | date:'dd.MM'}} -
@@ -70,8 +69,8 @@
                                 <li ng-repeat="s in vm.specialDays | orderBy:'date'">{{s.date | date:'dd.MM'}} -
                                     {{s.name}}</li>
                             </ul>
-                        </div>
-                    </div> -->
+                        </div> -->
+                    </div>
                 </p>
             </div>
         </div>
