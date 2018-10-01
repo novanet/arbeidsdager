@@ -31,9 +31,7 @@ utils.holiday = utils.holiday || {};
         }
 
         function getHolidays(year) {
-                console.log('getHolidays for year', year);
                 var easterSunday = getEasterSunday(year);
-
                 var holidays = [];
 
                 // 01.05: Offentlig høytidsdag        
