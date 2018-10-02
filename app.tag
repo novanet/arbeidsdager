@@ -35,9 +35,6 @@
                         <div class="col-lg-4">
                             <ul style="text-align:left;list-style-type:none;"><strong>Helligdager i
                                     {selectedYear}:</strong>
-                                <!-- <li each="{h in holidays | orderBy:'date'}">{h.date | date:'dd.MM'} -
-                                    {h.name}</li> -->
-                                <!-- <li each="{h in holidays | orderBy:'date'}">{h.date} - -->
                                 <li each="{h in holidays}">{h.date} -
                                     {h.name}</li>
                             </ul>
@@ -45,16 +42,13 @@
                         <div class="col-lg-4">
                             <ul style="text-align:left;list-style-type:none;" if="{summerTime}"><strong>Sommertid
                                     starter</strong>
-                                <!-- <li>{summerTime.start | date:'dd.MM'} - kl.02:00</li> -->
                                 <li>{summerTime.start} - kl.02:00</li>
                             </ul>
                             <ul style="text-align:left;list-style-type:none;"><strong>Sommertid slutter</strong>
-                                <!-- <li>{summerTime.end | date:'dd.MM'} - kl.03:00</li> -->
                                 <li>{summerTime.end} - kl.03:00</li>
                             </ul>
                             <ul style="text-align:left;list-style-type:none;"><strong>Andre spesielle dager i
                                     {selectedYear}:</strong>
-                                <!-- <li each="s in specialDays | orderBy:'date'">{s.date | date:'dd.MM'} - -->
                                 <li each="{s in specialDays }">{s.date} -
                                     {s.name}</li>
                             </ul>
