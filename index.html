@@ -6,75 +6,25 @@
     <title>Arbeidsdager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css"
         integrity="sha256-r1WijW/SNMgOwk5LDk7QRHr6oVYYbYWMw/1kOXfYJfg=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css" />
 </head>
 
 
 <body>
-    <div id="app" class="container" v-cloak>
-        <div class="row">
-            <div class="jumbotron">
-                <a href="https://www.novanet.no"><img src="novanet-logo.svg" class="logo"></a>
-                <h1>Arbeidsdager</h1>
-                <p>
-                    <ul class="pager">
-                        <li><a class="btn" @click="decreaseYear">-</a></li>
-                        <li class="selector">{{selectedYear}}</li>
-                        <li><a class="btn" @click="increaseYear">+</a></li>
-                    </ul>
-                    <ul class="nav nav-pills">
-                        <monthbox v-for="month in months" :name="month.name" :number-of-days="month.numberOfWorkingDays"></monthbox>
-                    </ul>
-                    <br />
-                    <br />
-                    <div class="row summary">
-                        <div class="col-lg-4">
-                            <ul><strong>I dag:</strong>
-                                <li>{{today | date('DD.MM.YYYY')}}</li>
-                            </ul>
-                            <ul><strong>Ukenummer:</strong>
-                                <li>{{week}}</li>
-                            </ul>
-                            <ul><strong>Totalt antall arbeidsdager</strong>
-                                <li>{{totalNumberOfWorkingDaysInYear}}</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4">
-                            <ul><strong>Helligdager i
-                                    {{selectedYear}}:</strong>
-                                <li v-for="holiday in holidays">{{holiday.date | date('DD.MM')}} -
-                                    {{holiday.name}}</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4">
-                            <ul><strong>Sommertid
-                                    starter</strong>
-                                <li>{{summerTime.start | date('DD.MM')}} - kl.02:00</li>
-                            </ul>
-                            <ul><strong>Sommertid slutter</strong>
-                                <li>{{summerTime.end | date('DD.MM')}} - kl.03:00</li>
-                            </ul>
-                            <ul><strong>Andre spesielle dager i
-                                    {{selectedYear}}:</strong>
-                                <li v-for="s in specialDays">{{s.date | date('DD.MM')}} -
-                                    {{s.name}}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </p>
-            </div>
-        </div>
+    <div class="container">
+        <app></app>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js" integrity="sha256-FtWfRI+thWlNz2sB3SJbwKx5PgMyKIVgwHCTwa3biXc="
-        crossorigin="anonymous"></script>
+    <script type="riot/tag" src="app.tag"></script>
+    <script src="https://cdn.jsdelivr.net/npm/riot@3.12/riot+compiler.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" integrity="sha256-CutOzxCRucUsn6C6TcEYsauvvYilEniTXldPa6/wu0k="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js" integrity="sha256-7/yoZS3548fXSRXqc/xYzjsmuW3sFKzuvOCHd06Pmps="
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="holiday.service.js"></script>
     <script type="text/javascript" src="workingdays.service.js"></script>
-    <script type="text/javascript" src="monthbox.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+    <script>
+        riot.mount('app')
+    </script>
+
 </body>
 
 </html>

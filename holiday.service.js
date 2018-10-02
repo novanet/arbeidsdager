@@ -20,10 +20,10 @@
         var specialDays = [];
 
         // Morsdag: Den andre søndagen i februar
-        specialDays.push({ 'date': getMothersDay(year).format('YYYY-MM-DD'), 'name': 'Morsdag' });
+        specialDays.push({ 'date': getMothersDay(year).format('DD.MM'), 'name': 'Morsdag' });
 
         // Farsdag: Den andre søndagen i november
-        specialDays.push({ 'date': getFathersDay(year).format('YYYY-MM-DD'), 'name': 'Farsdag' });
+        specialDays.push({ 'date': getFathersDay(year).format('DD.MM'), 'name': 'Farsdag' });
 
         return specialDays;
     }
@@ -33,43 +33,43 @@
         var holidays = [];
 
         // 01.05: Offentlig høytidsdag        
-        holidays.push({ 'date': moment(new Date(year, 4, 1)).format('YYYY-MM-DD'), 'name': 'Offentlig høytidsdag' });
+        holidays.push({ 'date': moment(new Date(year, 4, 1)).format('DD.MM'), 'name': 'Offentlig høytidsdag' });
 
         // 17.05: Grunnlovsdag
-        holidays.push({ 'date': moment(new Date(year, 4, 17)).format('YYYY-MM-DD'), 'name': 'Grunnlovsdag' });
+        holidays.push({ 'date': moment(new Date(year, 4, 17)).format('DD.MM'), 'name': 'Grunnlovsdag' });
 
         // 25.12: 1. juledag
-        holidays.push({ 'date': moment(new Date(year, 11, 25)).format('YYYY-MM-DD'), 'name': '1. juledag' });
+        holidays.push({ 'date': moment(new Date(year, 11, 25)).format('DD.MM'), 'name': '1. juledag' });
 
         // 26.12: 2. juledag
-        holidays.push({ 'date': moment(new Date(year, 11, 26)).format('YYYY-MM-DD'), 'name': '2. juledag' });
+        holidays.push({ 'date': moment(new Date(year, 11, 26)).format('DD.MM'), 'name': '2. juledag' });
 
         // 01.01: 1. nyttårsdag        
-        holidays.push({ 'date': moment(new Date(year, 0, 1)).format('YYYY-MM-DD'), 'name': '1. nyttårsdag' });
+        holidays.push({ 'date': moment(new Date(year, 0, 1)).format('DD.MM'), 'name': '1. nyttårsdag' });
 
         // XX.XX: Palmesøndag
-        holidays.push({ 'date': easterSunday.clone().add(-7, 'days').format('YYYY-MM-DD'), 'name': 'Palmesøndag' });
+        holidays.push({ 'date': easterSunday.clone().add(-7, 'days').format('DD.MM'), 'name': 'Palmesøndag' });
 
         // XX.XX: Skjærtorsdag
-        holidays.push({ 'date': easterSunday.clone().add(-3, 'days').format('YYYY-MM-DD'), 'name': 'Skjærtorsdag' });
+        holidays.push({ 'date': easterSunday.clone().add(-3, 'days').format('DD.MM'), 'name': 'Skjærtorsdag' });
 
         // XX.XX: Langfredag
-        holidays.push({ 'date': easterSunday.clone().add(-2, 'days').format('YYYY-MM-DD'), 'name': 'Langfredag' });
+        holidays.push({ 'date': easterSunday.clone().add(-2, 'days').format('DD.MM'), 'name': 'Langfredag' });
 
         // XX.XX: 1. påskedag
-        holidays.push({ 'date': easterSunday.format('YYYY-MM-DD'), 'name': '1. påskedag' });
+        holidays.push({ 'date': easterSunday.format('DD.MM'), 'name': '1. påskedag' });
 
         // XX.XX: 2. påskedag        
-        holidays.push({ 'date': easterSunday.clone().add(1, 'days').format('YYYY-MM-DD'), 'name': '2. påskedag' });
+        holidays.push({ 'date': easterSunday.clone().add(1, 'days').format('DD.MM'), 'name': '2. påskedag' });
 
         // XX.XX: Kristi Himmelfartsdag        
-        holidays.push({ 'date': easterSunday.clone().add(39, 'days').format('YYYY-MM-DD'), 'name': 'Kristi Himmelfartsdag' });
+        holidays.push({ 'date': easterSunday.clone().add(39, 'days').format('DD.MM'), 'name': 'Kristi Himmelfartsdag' });
 
         // XX.XX: 1. pinsedag
-        holidays.push({ 'date': easterSunday.clone().add(49, 'days').format('YYYY-MM-DD'), 'name': '1. pinsedag' });
+        holidays.push({ 'date': easterSunday.clone().add(49, 'days').format('DD.MM'), 'name': '1. pinsedag' });
 
         // XX.XX: 2. pinsedag
-        holidays.push({ 'date': easterSunday.clone().add(50, 'days').format('YYYY-MM-DD'), 'name': '2. pinsedag' });
+        holidays.push({ 'date': easterSunday.clone().add(50, 'days').format('DD.MM'), 'name': '2. pinsedag' });
 
         return holidays;
     }
