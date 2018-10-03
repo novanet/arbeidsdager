@@ -35,7 +35,7 @@
                         <div class="col-lg-4">
                             <ul style="text-align:left;list-style-type:none;"><strong>Helligdager i
                                     {selectedYear}:</strong>
-                                <li each="{h in holidays}">{h.date} -
+                                <li each="{h in holidays}">{formatDate(h.date)} -
                                     {h.name}</li>
                             </ul>
                         </div>
@@ -100,40 +100,34 @@
         }
     </style>
     <script>
-        this.months = []
         this.summerTime = {
             start: '',
             end: ''
         }
-        this.selectedYear = moment().year();
-        this.today = moment().format('DD.MM.YYYY');
-        this.week = moment().isoWeek();
 
-        this.createMonths = () => (
+        const createMonths = () => (
             this.months = [
-                this.createMonth('Januar', 1),
-                this.createMonth('Februar', 2),
-                this.createMonth('Mars', 3),
-                this.createMonth('April', 4),
-                this.createMonth('Mai', 5),
-                this.createMonth('Juni', 6),
-                this.createMonth('Juli', 7),
-                this.createMonth('August', 8),
-                this.createMonth('September', 9),
-                this.createMonth('Oktober', 10),
-                this.createMonth('November', 11),
-                this.createMonth('Desember', 12)
+                createMonth('Januar', 1),
+                createMonth('Februar', 2),
+                createMonth('Mars', 3),
+                createMonth('April', 4),
+                createMonth('Mai', 5),
+                createMonth('Juni', 6),
+                createMonth('Juli', 7),
+                createMonth('August', 8),
+                createMonth('September', 9),
+                createMonth('Oktober', 10),
+                createMonth('November', 11),
+                createMonth('Desember', 12)
             ]
         )
 
-        this.createMonth = (name, monthNumber) => {
+        const createMonth = (name, monthNumber) => {
             return {
                 name: name,
                 numberOfWorkingDays: utils.getNumberOfWorkingDays(this.selectedYear, monthNumber, this.holidays)
             }
         }
-
-        this.workingDaysInYear = () => (this.months.reduce((prev, cur) => (prev + cur.numberOfWorkingDays), 0))
 
         this.decreaseYear = () => {
             this.selectedYear--;
@@ -143,13 +137,21 @@
             this.selectedYear++;
         }
 
+        this.formatDate = date => {
+            const d = new Date(date)
+            return [d.getDate(), (d.getMonth() + 1)].join('.')
+        }
+
         this.on('mount', () => {
+            this.selectedYear = moment().year();
+            this.today = moment().format('DD.MM.YYYY');
+            this.week = moment().isoWeek();
             this.update()
         })
 
         this.on('update', () => {
-            this.months = this.createMonths()
-            this.totalNumberOfWorkingDaysInYear = this.workingDaysInYear()
+            this.months = createMonths()
+            this.totalNumberOfWorkingDaysInYear = this.months.reduce((p, c) => (p + c.numberOfWorkingDays), 0)
             this.specialDays = _.orderBy(utils.getSpecialDays(this.selectedYear), ['date'], ['asc']);
             this.summerTime = {
                 start: utils.getStartOfSummerTime(this.selectedYear),
