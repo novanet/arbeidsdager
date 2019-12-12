@@ -48,11 +48,17 @@
             // 17.05: Grunnlovsdag
             holidays.push({'date' : moment(new Date(year, 4, 17)).format('YYYY-MM-DD'), 'name' : 'Grunnlovsdag'});
             
+	    // 24.12: Julaften
+            holidays.push({'date' : moment(new Date(year, 11, 24)).format('YYYY-MM-DD'), 'name' : 'Julaften'});
+		
             // 25.12: 1. juledag
             holidays.push({'date' : moment(new Date(year, 11, 25)).format('YYYY-MM-DD'), 'name' : '1. juledag'});
             
             // 26.12: 2. juledag
             holidays.push({'date' : moment(new Date(year, 11, 26)).format('YYYY-MM-DD'), 'name' : '2. juledag'});
+		
+	    // 31.12: Nyttårsaften
+            holidays.push({'date' : moment(new Date(year, 11, 31)).format('YYYY-MM-DD'), 'name' : 'Nyttårsaften'});
             
             // 01.01: 1. nyttårsdag        
             holidays.push({'date' : moment(new Date(year, 0, 1)).format('YYYY-MM-DD'), 'name' : '1. nyttårsdag'});
